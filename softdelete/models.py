@@ -117,7 +117,7 @@ class SoftDeleteManager(models.Manager):
         return qs
 
     def get(self, *args, **kwargs):
-        return self.all_with_deleted().get(*args, **kwargs)
+        return _get_self_queryset().filter(*args, **kwargs)
 
     def filter(self, *args, **kwargs):
         if 'pk' in kwargs:
